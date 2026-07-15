@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>K-REFCON 앱 설치</title>
+<meta name="description" content="K-REFCON 냉동 컨테이너 모니터링 앱 — Android · iPhone 설치">
+<meta name="color-scheme" content="light dark">
+<style>
+  :root {
+    --navy: #13234F;
+    --blue: #1E50A2;
+    --bg: #f4f6fb;
+    --card: #ffffff;
+    --text: #1a2233;
+    --muted: #5b6577;
+    --border: #e2e7f0;
+    --shadow: 0 6px 24px rgba(19, 35, 79, 0.10);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0c1526;
+      --card: #14203a;
+      --text: #e8ecf5;
+      --muted: #9aa6bd;
+      --border: #243350;
+      --shadow: 0 6px 24px rgba(0, 0, 0, 0.35);
+    }
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Apple SD Gothic Neo",
+                 "Malgun Gothic", Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .wrap { width: 100%; max-width: 560px; padding: 32px 20px 48px; }
+
+  header { text-align: center; margin-bottom: 28px; }
+  .logo {
+    width: 96px; height: 96px; border-radius: 22px;
+    box-shadow: var(--shadow); display: block; margin: 0 auto 16px;
+  }
+  h1 { margin: 0; font-size: 1.7rem; letter-spacing: -0.02em; color: var(--text); }
+  .tagline { margin: 6px 0 2px; font-size: 1rem; color: var(--muted); }
+  .company { margin: 0; font-size: 0.85rem; color: var(--muted); }
+
+  .cards { display: flex; flex-direction: column; gap: 16px; }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 22px 20px;
+    box-shadow: var(--shadow);
+    transition: border-color .2s, transform .2s;
+  }
+  .card.active { border-color: var(--blue); }
+  .card-head { display: flex; align-items: center; gap: 12px; margin-bottom: 6px; }
+  .card-head .os-icon {
+    width: 34px; height: 34px; flex: none;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .card-head .os-icon svg { width: 30px; height: 30px; }
+  .card-title { font-size: 1.15rem; font-weight: 700; margin: 0; }
+  .card-sub { font-size: 0.82rem; color: var(--muted); margin: 0; }
+  .badge {
+    margin-left: auto; font-size: 0.7rem; font-weight: 700;
+    padding: 3px 9px; border-radius: 999px;
+    background: rgba(30, 80, 162, 0.12); color: var(--blue);
+    white-space: nowrap;
+  }
+  .card p.note {
+    font-size: 0.8rem; color: var(--muted); margin: 12px 2px 0; line-height: 1.5;
+  }
+  .card p.note b { color: var(--text); font-weight: 600; }
+
+  .btn {
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    width: 100%; margin-top: 16px; padding: 14px 16px;
+    border: none; border-radius: 12px;
+    font-size: 1rem; font-weight: 700; text-decoration: none;
+    cursor: pointer; transition: filter .15s, opacity .15s;
+  }
+  .btn-primary { background: var(--blue); color: #fff; }
+  .btn-primary:active { filter: brightness(0.92); }
+  .btn-navy { background: var(--navy); color: #fff; }
+  .btn-navy:active { filter: brightness(1.15); }
+  .btn svg { width: 20px; height: 20px; }
+  .btn.disabled {
+    background: var(--border); color: var(--muted);
+    cursor: default; pointer-events: none;
+  }
+
+  .steps { margin: 10px 2px 0; padding-left: 18px; font-size: 0.8rem; color: var(--muted); }
+  .steps li { margin: 3px 0; }
+
+  footer {
+    margin-top: 32px; text-align: center; font-size: 0.78rem; color: var(--muted);
+    line-height: 1.7;
+  }
+  footer a { color: var(--blue); text-decoration: none; }
+  .ver { font-variant-numeric: tabular-nums; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <img class="logo" src="icon.png" alt="K-REFCON" width="96" height="96">
+      <h1>K-REFCON</h1>
+      <p class="tagline">냉동 컨테이너 실시간 모니터링</p>
+      <p class="company">㈜케이리퍼콘</p>
+    </header>
+
+    <div class="cards">
+      <!-- Android -->
+      <section class="card" id="card-android">
+        <div class="card-head">
+          <span class="os-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="#3DDC84"><path d="M17.6 9.48l1.84-3.18a.4.4 0 0 0-.69-.4l-1.86 3.23a11.4 11.4 0 0 0-9.78 0L5.25 5.9a.4.4 0 1 0-.69.4L6.4 9.48A10.8 10.8 0 0 0 1 18.32h22a10.8 10.8 0 0 0-5.4-8.84zM7 15.25a1.1 1.1 0 1 1 0-2.2 1.1 1.1 0 0 1 0 2.2zm10 0a1.1 1.1 0 1 1 0-2.2 1.1 1.1 0 0 1 0 2.2z"/></svg>
+          </span>
+          <div>
+            <p class="card-title">Android</p>
+            <p class="card-sub">스마트폰 · 태블릿</p>
+          </div>
+          <span class="badge" id="android-badge" style="display:none">현재 기기</span>
+        </div>
+        <a class="btn btn-primary" id="android-btn"
+           href="https://github.com/AegisAX/install/releases/download/krefcon-latest/K-REFCON.apk">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3a1 1 0 0 1 1 1v9.59l2.3-2.3a1 1 0 0 1 1.4 1.42l-4 4a1 1 0 0 1-1.4 0l-4-4a1 1 0 0 1 1.4-1.42l2.3 2.3V4a1 1 0 0 1 1-1zM5 19a1 1 0 0 1 1-1h12a1 1 0 0 1 0 2H6a1 1 0 0 1-1-1z"/></svg>
+          APK 다운로드 · 설치
+        </a>
+        <p class="note">
+          다운로드 후 파일을 열어 설치합니다. 처음 설치 시 <b>“이 출처의 앱 설치 허용”</b>을 한 번 켜야 할 수 있습니다
+          (설치 화면 안내를 따르면 됩니다).
+        </p>
+      </section>
+
+      <!-- iOS -->
+      <section class="card" id="card-ios">
+        <div class="card-head">
+          <span class="os-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.36 12.9c-.02-2.06 1.68-3.05 1.76-3.1-0.96-1.4-2.46-1.6-2.99-1.62-1.27-.13-2.48.75-3.13.75-.64 0-1.64-.73-2.7-.71-1.39.02-2.67.81-3.38 2.05-1.44 2.5-.37 6.2 1.03 8.23.68.99 1.5 2.1 2.56 2.06 1.03-.04 1.42-.66 2.66-.66 1.24 0 1.59.66 2.67.64 1.1-.02 1.8-1.01 2.48-2.01.78-1.15 1.1-2.26 1.12-2.32-.02-.01-2.15-.83-2.17-3.28zM14.3 6.9c.56-.68.94-1.63.84-2.57-.81.03-1.79.54-2.37 1.22-.52.6-.98 1.56-.86 2.48.9.07 1.83-.46 2.39-1.13z"/></svg>
+          </span>
+          <div>
+            <p class="card-title">iPhone · iPad</p>
+            <p class="card-sub">TestFlight로 설치</p>
+          </div>
+          <span class="badge" id="ios-badge" style="display:none">현재 기기</span>
+        </div>
+        <a class="btn btn-navy disabled" id="ios-btn" href="#" aria-disabled="true">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm1 5a1 1 0 0 0-2 0v5a1 1 0 0 0 .55.9l3 1.5a1 1 0 1 0 .9-1.8L13 11.4V7z"/></svg>
+          TestFlight 준비 중
+        </a>
+        <ol class="steps">
+          <li>App Store에서 무료 <b>TestFlight</b> 앱 설치</li>
+          <li>위 버튼(초대 링크)을 눌러 <b>K-REFCON</b> 설치</li>
+        </ol>
+        <p class="note">
+          iPhone은 Apple 정책상 App Store/TestFlight를 통해서만 설치할 수 있어, TestFlight 초대 링크로 제공됩니다.
+          초대 링크는 준비되는 대로 이 버튼에 연결됩니다.
+        </p>
+      </section>
+    </div>
+
+    <footer>
+      <p class="ver">버전 1.11.2</p>
+      <p>
+        <a href="https://aegisax.github.io/privacy/krefcon/">개인정보처리방침</a>
+        &nbsp;·&nbsp;
+        <a href="mailto:krefcon@k-refcon.com">krefcon@k-refcon.com</a>
+      </p>
+      <p>© 2026 ㈜케이리퍼콘 (K-REFCON)</p>
+    </footer>
+  </div>
+
+  <script>
+    (function () {
+      var ua = navigator.userAgent || "";
+      var isIOS = /iPad|iPhone|iPod/.test(ua) ||
+                  (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+      var isAndroid = /Android/.test(ua);
+      var androidCard = document.getElementById("card-android");
+      var iosCard = document.getElementById("card-ios");
+      var cards = document.querySelector(".cards");
+      if (isIOS) {
+        iosCard.classList.add("active");
+        document.getElementById("ios-badge").style.display = "";
+        cards.insertBefore(iosCard, androidCard); // matching OS first
+      } else if (isAndroid) {
+        androidCard.classList.add("active");
+        document.getElementById("android-badge").style.display = "";
+      }
+    })();
+  </script>
+</body>
+</html>

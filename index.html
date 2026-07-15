@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AegisAX 앱 설치</title>
+<meta name="description" content="AegisAX 앱 설치 페이지 모음">
+<meta name="color-scheme" content="light dark">
+<style>
+  :root {
+    --bg: #f4f6fb; --card: #ffffff; --text: #1a2233; --muted: #5b6577;
+    --border: #e2e7f0; --blue: #1E50A2; --shadow: 0 6px 24px rgba(19,35,79,.10);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0c1526; --card: #14203a; --text: #e8ecf5; --muted: #9aa6bd;
+      --border: #243350; --shadow: 0 6px 24px rgba(0,0,0,.35);
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; min-height: 100vh; background: var(--bg); color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Apple SD Gothic Neo",
+                 "Malgun Gothic", Roboto, sans-serif; line-height: 1.55;
+    display: flex; flex-direction: column; align-items: center;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { width: 100%; max-width: 520px; padding: 44px 20px; }
+  h1 { font-size: 1.5rem; margin: 0 0 4px; text-align: center; }
+  .sub { text-align: center; color: var(--muted); margin: 0 0 28px; font-size: .92rem; }
+  a.app {
+    display: flex; align-items: center; gap: 14px; text-decoration: none;
+    background: var(--card); border: 1px solid var(--border); border-radius: 16px;
+    padding: 18px 18px; margin-bottom: 14px; box-shadow: var(--shadow);
+    color: var(--text); transition: border-color .2s;
+  }
+  a.app:hover { border-color: var(--blue); }
+  a.app img { width: 48px; height: 48px; border-radius: 12px; flex: none; }
+  a.app .t { font-weight: 700; font-size: 1.05rem; }
+  a.app .d { color: var(--muted); font-size: .82rem; }
+  a.app .chev { margin-left: auto; color: var(--muted); font-size: 1.4rem; }
+  footer { margin-top: 26px; text-align: center; color: var(--muted); font-size: .78rem; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>앱 설치</h1>
+    <p class="sub">AegisAX</p>
+    <a class="app" href="krefcon/">
+      <img src="krefcon/icon.png" alt="K-REFCON">
+      <span>
+        <span class="t">K-REFCON</span><br>
+        <span class="d">냉동 컨테이너 실시간 모니터링 · ㈜케이리퍼콘</span>
+      </span>
+      <span class="chev" aria-hidden="true">›</span>
+    </a>
+    <footer>© 2026 AegisAX</footer>
+  </div>
+</body>
+</html>
