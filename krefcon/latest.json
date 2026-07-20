@@ -1,8 +1,8 @@
 {
-  "versionCode": 68,
-  "versionName": "1.15.4",
-  "apkUrl": "https://github.com/AegisAX/install/releases/download/krefcon-latest/K-REFCON-v1.15.4.apk",
-  "notes": "• 업데이트 확인 강화(앱 켤 때마다 + 백그라운드 주기)\n• 최신 버전으로 업데이트",
+  "versionCode": 69,
+  "versionName": "1.15.5",
+  "apkUrl": "https://github.com/AegisAX/install/releases/download/krefcon-latest/K-REFCON-v1.15.5.apk",
+  "notes": "• 자동 업데이트 확인 동작 점검용 버전\n• 최신 버전으로 업데이트",
   "minVersionCode": 0,
-  "sha256": "e1e0ebf5acd7c6b284d6867362f18f70085f58de2cd35501421a42856e1f9b52"
+  "sha256": "7c8660ed508664c66a02c2394aab900f8d7d3937108ff1cf62af88daf12518ee"
 }
