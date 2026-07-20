@@ -1,8 +1,8 @@
 {
-  "versionCode": 65,
-  "versionName": "1.15.1",
-  "apkUrl": "https://github.com/AegisAX/install/releases/download/krefcon-latest/K-REFCON-v1.15.1.apk",
-  "notes": "• 인앱 자동 업데이트 지원\n• 새로고침·알람 주기 선택지 정비, 알람 주기마다 새로고침\n• 앱바 경보 배지가 모든 이상 채널을 순환\n• 오프라인 채널의 중복 임계값 알람 억제",
+  "versionCode": 67,
+  "versionName": "1.15.3",
+  "apkUrl": "https://github.com/AegisAX/install/releases/download/krefcon-latest/K-REFCON-v1.15.3.apk",
+  "notes": "• 최신 버전으로 업데이트\n• 자동 업데이트 기능 점검",
   "minVersionCode": 0,
-  "sha256": "8282c09cca373fa81a136cf463ee9739066c6ed1f3fa496575e23846ddc8b6d5"
+  "sha256": "50d103b8f1caea320183b6636f99287efe6bd7e954ce88eb06af16ce3ad7268f"
 }
