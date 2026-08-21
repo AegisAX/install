@@ -1,0 +1,7 @@
+{
+  "versionCode": 70,
+  "versionName": "1.16.0",
+  "apkUrl": "https://github.com/AegisAX/install/releases/download/krefcon-latest/krefcon_monitor.appinstaller",
+  "notes": "데스크톱(Windows) 첫 배포 · 창을 닫아도 트레이에서 계속 감시합니다",
+  "minVersionCode": 0
+}

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>K-REFCON Windows 설치</title>
+<meta name="description" content="K-REFCON 냉동 컨테이너 모니터링 — Windows 상황판 앱 설치">
+<meta name="color-scheme" content="light dark">
+<style>
+  :root {
+    --navy: #13234F;
+    --blue: #1E50A2;
+    --bg: #f4f6fb;
+    --card: #ffffff;
+    --text: #1a2233;
+    --muted: #5b6577;
+    --border: #e2e7f0;
+    --shadow: 0 6px 24px rgba(19, 35, 79, 0.10);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0c1526;
+      --card: #14203a;
+      --text: #e8ecf5;
+      --muted: #9aa6bd;
+      --border: #243350;
+      --shadow: 0 6px 24px rgba(0, 0, 0, 0.35);
+    }
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Apple SD Gothic Neo",
+                 "Malgun Gothic", Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .wrap { width: 100%; max-width: 560px; padding: 32px 20px 48px; }
+
+  header { text-align: center; margin-bottom: 28px; }
+  .logo {
+    width: 96px; height: 96px; border-radius: 22px;
+    box-shadow: var(--shadow); display: block; margin: 0 auto 16px;
+  }
+  h1 { margin: 0; font-size: 1.7rem; letter-spacing: -0.02em; color: var(--text); }
+  .tagline { margin: 6px 0 2px; font-size: 1rem; color: var(--muted); }
+  .company { margin: 0; font-size: 0.85rem; color: var(--muted); }
+
+  .cards { display: flex; flex-direction: column; gap: 16px; }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 22px 20px;
+    box-shadow: var(--shadow);
+    transition: border-color .2s, transform .2s;
+  }
+  .card.active { border-color: var(--blue); }
+  .card-head { display: flex; align-items: center; gap: 12px; margin-bottom: 6px; }
+  .card-head .os-icon {
+    width: 34px; height: 34px; flex: none;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .card-head .os-icon svg { width: 30px; height: 30px; }
+  .card-title { font-size: 1.15rem; font-weight: 700; margin: 0; }
+  .card-sub { font-size: 0.82rem; color: var(--muted); margin: 0; }
+  .badge {
+    margin-left: auto; font-size: 0.7rem; font-weight: 700;
+    padding: 3px 9px; border-radius: 999px;
+    background: rgba(30, 80, 162, 0.12); color: var(--blue);
+    white-space: nowrap;
+  }
+  .card p.note {
+    font-size: 0.8rem; color: var(--muted); margin: 12px 2px 0; line-height: 1.5;
+  }
+  .card p.note b { color: var(--text); font-weight: 600; }
+
+  .btn {
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    width: 100%; margin-top: 16px; padding: 14px 16px;
+    border: none; border-radius: 12px;
+    font-size: 1rem; font-weight: 700; text-decoration: none;
+    cursor: pointer; transition: filter .15s, opacity .15s;
+  }
+  .btn-primary { background: var(--blue); color: #fff; }
+  .btn-primary:active { filter: brightness(0.92); }
+  .btn-navy { background: var(--navy); color: #fff; }
+  .btn-navy:active { filter: brightness(1.15); }
+  .btn svg { width: 20px; height: 20px; }
+  .btn.disabled {
+    background: var(--border); color: var(--muted);
+    cursor: default; pointer-events: none;
+  }
+
+  .steps { margin: 10px 2px 0; padding-left: 18px; font-size: 0.8rem; color: var(--muted); }
+  .steps li { margin: 3px 0; }
+
+  footer {
+    margin-top: 32px; text-align: center; font-size: 0.78rem; color: var(--muted);
+    line-height: 1.7;
+  }
+  footer a { color: var(--blue); text-decoration: none; }
+  .ver { font-variant-numeric: tabular-nums; }
+</style>
+<style>
+  code {
+    display: inline-block; margin: 2px 0;
+    background: var(--bg); border: 1px solid var(--border); border-radius: 6px;
+    padding: 1px 7px; font-size: 0.85em;
+    font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <img class="logo" src="../icon.png" alt="K-REFCON" width="96" height="96">
+      <h1>K-REFCON for Windows</h1>
+      <p class="tagline">PC에 띄워두는 상시 감시 상황판</p>
+      <p class="company">㈜케이리퍼콘</p>
+    </header>
+
+    <div class="cards">
+      <section class="card">
+        <div class="card-head">
+          <span class="os-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="#0078D4"><path d="M3 5.7l7.4-1v7.1H3V5.7zm0 12.6l7.4 1v-7h-7.4v6zM11.6 4.5L21 3.2v8.6h-9.4V4.5zm0 8.5H21v8.6l-9.4-1.3V13z"/></svg>
+          </span>
+          <div>
+            <p class="card-title">Windows 10 · 11</p>
+            <p class="card-sub">버전 1.16.0</p>
+          </div>
+        </div>
+
+        <p class="note" style="margin-top:0">
+          창을 닫아도 <b>트레이에 남아 계속 감시</b>합니다. 설치 후에는
+          <b>업데이트가 자동</b>으로 이루어집니다.
+        </p>
+
+        <ol class="steps">
+          <li>아래 두 파일을 <b>같은 폴더</b>에 내려받습니다.</li>
+          <li><b>PowerShell을 관리자 권한으로</b> 열고, 내려받은 폴더에서 실행합니다:
+            <br><code>Set-ExecutionPolicy -Scope Process Bypass -Force</code>
+            <br><code>.\krefcon-setup.ps1</code></li>
+          <li>설치 창이 열리면 <b>[설치]</b>를 누릅니다.</li>
+        </ol>
+
+        <a class="btn btn-primary" href="krefcon-setup.ps1" download>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3a1 1 0 0 1 1 1v9.59l2.3-2.3a1 1 0 0 1 1.4 1.42l-4 4a1 1 0 0 1-1.4 0l-4-4a1 1 0 0 1 1.4-1.42l2.3 2.3V4a1 1 0 0 1 1-1zM5 19a1 1 0 0 1 1-1h12a1 1 0 0 1 0 2H6a1 1 0 0 1-1-1z"/></svg>
+          1. 설치 스크립트 내려받기
+        </a>
+        <a class="btn btn-navy" href="krefcon.cer" download>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l7 3v6c0 4.4-2.9 8.5-7 9.9C7.9 19.5 5 15.4 5 11V5l7-3zm0 6a2 2 0 0 0-1 3.7V15h2v-3.3A2 2 0 0 0 12 8z"/></svg>
+          2. 인증서 내려받기 (krefcon.cer)
+        </a>
+
+        <p class="note">
+          <b>왜 인증서가 필요한가요?</b> 이 앱은 Microsoft 스토어를 거치지 않고 배포되므로,
+          PC가 설치 파일의 서명을 신뢰하도록 <b>최초 1회</b> 등록해야 합니다.
+          스크립트가 이 과정을 대신 해줍니다. <b>이후 업데이트에는 다시 필요하지 않습니다.</b>
+        </p>
+      </section>
+
+      <section class="card">
+        <div class="card-head">
+          <div>
+            <p class="card-title">설치 후 확인</p>
+            <p class="card-sub">처음 한 번만</p>
+          </div>
+        </div>
+        <ol class="steps">
+          <li>창을 닫아도 <b>알림 영역(<code>^</code>)</b>에 눈송이 아이콘이 남아 있는지 — 감시가 계속된다는 뜻입니다.</li>
+          <li><b>설정 → 앱 → 시작 프로그램</b>에서 <b>K-REFCON</b>이 켜져 있는지 — PC를 켜면 자동으로 감시를 시작합니다.</li>
+          <li>드로어(☰) → <b>백그라운드 알람 설정</b> → <b>테스트 알림 보내기</b>로 알람이 실제로 울리는지.</li>
+        </ol>
+        <p class="note">
+          ⚠️ PC가 절전에 들어가면 폴링이 멈춰 알람도 울리지 않습니다. 상황판으로 쓰신다면
+          같은 화면에서 <b>절전 방지</b>를 켜 두세요.
+        </p>
+      </section>
+    </div>
+
+    <footer>
+      <p class="ver">버전 1.16.0</p>
+      <p>
+        <a href="../">Android · iPhone 설치</a>
+        &nbsp;·&nbsp;
+        <a href="https://policy.aegisax.com/krefcon/">개인정보처리방침</a>
+        &nbsp;·&nbsp;
+        <a href="mailto:krefcon@k-refcon.com">krefcon@k-refcon.com</a>
+      </p>
+      <p>© 2026 ㈜케이리퍼콘 (K-REFCON)</p>
+    </footer>
+  </div>
+</body>
+</html>

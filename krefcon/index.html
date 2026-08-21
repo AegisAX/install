@@ -167,6 +167,28 @@
           위 버튼을 누르면 TestFlight 앱이 열리고 K-REFCON을 설치할 수 있습니다.
         </p>
       </section>
+
+      <!-- Windows -->
+      <section class="card" id="card-windows">
+        <div class="card-head">
+          <span class="os-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="#0078D4"><path d="M3 5.7l7.4-1v7.1H3V5.7zm0 12.6l7.4 1v-7h-7.4v6zM11.6 4.5L21 3.2v8.6h-9.4V4.5zm0 8.5H21v8.6l-9.4-1.3V13z"/></svg>
+          </span>
+          <div>
+            <p class="card-title">Windows</p>
+            <p class="card-sub">PC 상황판 · 상시 감시</p>
+          </div>
+          <span class="badge" id="windows-badge" style="display:none">현재 기기</span>
+        </div>
+        <a class="btn btn-primary" id="windows-btn" href="windows/">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3a1 1 0 0 1 1 1v9.59l2.3-2.3a1 1 0 0 1 1.4 1.42l-4 4a1 1 0 0 1-1.4 0l-4-4a1 1 0 0 1 1.4-1.42l2.3 2.3V4a1 1 0 0 1 1-1zM5 19a1 1 0 0 1 1-1h12a1 1 0 0 1 0 2H6a1 1 0 0 1-1-1z"/></svg>
+          Windows 설치 안내 (v1.16.0)
+        </a>
+        <p class="note">
+          창을 닫아도 <b>트레이에 남아 계속 감시</b>하고, PC를 켜면 자동으로 시작합니다.
+          설치 후 <b>업데이트는 자동</b>입니다.
+        </p>
+      </section>
     </div>
 
     <footer>
@@ -186,8 +208,12 @@
       var isIOS = /iPad|iPhone|iPod/.test(ua) ||
                   (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
       var isAndroid = /Android/.test(ua);
+      // Android 도 UA 에 "Windows" 가 없지만, 일부 데스크톱 UA 에는 "Android" 가 없다.
+      // 모바일을 먼저 판정한 뒤 남는 경우만 Windows 로 본다.
+      var isWindows = !isIOS && !isAndroid && /Windows NT/.test(ua);
       var androidCard = document.getElementById("card-android");
       var iosCard = document.getElementById("card-ios");
+      var windowsCard = document.getElementById("card-windows");
       var cards = document.querySelector(".cards");
       if (isIOS) {
         iosCard.classList.add("active");
@@ -196,6 +222,10 @@
       } else if (isAndroid) {
         androidCard.classList.add("active");
         document.getElementById("android-badge").style.display = "";
+      } else if (isWindows) {
+        windowsCard.classList.add("active");
+        document.getElementById("windows-badge").style.display = "";
+        cards.insertBefore(windowsCard, androidCard);
       }
     })();
   </script>
