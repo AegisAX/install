@@ -41,7 +41,7 @@
     flex-direction: column;
     align-items: center;
   }
-  .wrap { width: 100%; max-width: 560px; padding: 32px 20px 48px; }
+  .wrap { width: 100%; max-width: 900px; padding: 32px 20px 48px; }
 
   header { text-align: center; margin-bottom: 28px; }
   .logo {
@@ -52,7 +52,15 @@
   .tagline { margin: 6px 0 2px; font-size: 1rem; color: var(--muted); }
   .company { margin: 0; font-size: 0.85rem; color: var(--muted); }
 
-  .cards { display: flex; flex-direction: column; gap: 16px; }
+  /* 앱이 4개라 한 줄에 2장씩 두 줄. 좁은 화면(모바일)에서는 한 줄에 1장.
+     grid-auto-rows:1fr 로 네 카드의 높이를 동일하게 맞춘다. */
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-auto-rows: 1fr;
+    gap: 16px;
+  }
+  @media (max-width: 680px) { .cards { grid-template-columns: 1fr; } }
   .card {
     background: var(--card);
     border: 1px solid var(--border);
@@ -60,6 +68,8 @@
     padding: 22px 20px;
     box-shadow: var(--shadow);
     transition: border-color .2s, transform .2s;
+    display: flex;
+    flex-direction: column;   /* 높이를 맞춰도 내용은 위에서부터 */
   }
   .card.active { border-color: var(--blue); }
   .card-head { display: flex; align-items: center; gap: 12px; margin-bottom: 6px; }
@@ -70,8 +80,15 @@
   .card-head .os-icon svg { width: 30px; height: 30px; }
   .card-title { font-size: 1.15rem; font-weight: 700; margin: 0; }
   .card-sub { font-size: 0.82rem; color: var(--muted); margin: 0; }
+  /* 플랫폼마다 배포 시점이 달라 버전이 갈리므로 카드마다 따로 표시한다. */
+  .card-ver {
+    margin-left: auto; font-size: 0.72rem; font-weight: 700;
+    padding: 3px 9px; border-radius: 999px;
+    background: rgba(127, 127, 127, 0.14); color: var(--muted);
+    white-space: nowrap; font-variant-numeric: tabular-nums;
+  }
   .badge {
-    margin-left: auto; font-size: 0.7rem; font-weight: 700;
+    font-size: 0.7rem; font-weight: 700;
     padding: 3px 9px; border-radius: 999px;
     background: rgba(30, 80, 162, 0.12); color: var(--blue);
     white-space: nowrap;
@@ -129,6 +146,7 @@
             <p class="card-title">Android</p>
             <p class="card-sub">스마트폰 · 태블릿</p>
           </div>
+          <span class="card-ver">v1.15.5</span>
           <span class="badge" id="android-badge" style="display:none">현재 기기</span>
         </div>
         <a class="btn btn-primary" id="android-btn"
@@ -141,33 +159,6 @@
           (설치 화면 안내를 따르면 됩니다).
         </p>
       </section>
-
-      <!-- iOS -->
-      <section class="card" id="card-ios">
-        <div class="card-head">
-          <span class="os-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.36 12.9c-.02-2.06 1.68-3.05 1.76-3.1-0.96-1.4-2.46-1.6-2.99-1.62-1.27-.13-2.48.75-3.13.75-.64 0-1.64-.73-2.7-.71-1.39.02-2.67.81-3.38 2.05-1.44 2.5-.37 6.2 1.03 8.23.68.99 1.5 2.1 2.56 2.06 1.03-.04 1.42-.66 2.66-.66 1.24 0 1.59.66 2.67.64 1.1-.02 1.8-1.01 2.48-2.01.78-1.15 1.1-2.26 1.12-2.32-.02-.01-2.15-.83-2.17-3.28zM14.3 6.9c.56-.68.94-1.63.84-2.57-.81.03-1.79.54-2.37 1.22-.52.6-.98 1.56-.86 2.48.9.07 1.83-.46 2.39-1.13z"/></svg>
-          </span>
-          <div>
-            <p class="card-title">iPhone · iPad</p>
-            <p class="card-sub">TestFlight로 설치</p>
-          </div>
-          <span class="badge" id="ios-badge" style="display:none">현재 기기</span>
-        </div>
-        <a class="btn btn-navy" id="ios-btn" href="https://testflight.apple.com/join/utYhJw2T">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm1 5a1 1 0 0 0-2 0v5a1 1 0 0 0 .55.9l3 1.5a1 1 0 1 0 .9-1.8L13 11.4V7z"/></svg>
-          TestFlight로 설치
-        </a>
-        <ol class="steps">
-          <li>App Store에서 무료 <b>TestFlight</b> 앱 설치</li>
-          <li>위 버튼을 눌러 <b>K-REFCON</b> 설치</li>
-        </ol>
-        <p class="note">
-          iPhone은 Apple 정책상 App Store/TestFlight를 통해서만 설치할 수 있습니다.
-          위 버튼을 누르면 TestFlight 앱이 열리고 K-REFCON을 설치할 수 있습니다.
-        </p>
-      </section>
-
       <!-- Windows -->
       <section class="card" id="card-windows">
         <div class="card-head">
@@ -178,6 +169,7 @@
             <p class="card-title">Windows</p>
             <p class="card-sub">PC 상황판 · 상시 감시</p>
           </div>
+          <span class="card-ver">v1.16.0</span>
           <span class="badge" id="windows-badge" style="display:none">현재 기기</span>
         </div>
         <a class="btn btn-primary" id="windows-btn" href="https://github.com/AegisAX/install/releases/download/krefcon-latest/K-REFCON-Setup-v1.16.0.exe">
@@ -195,10 +187,65 @@
           설치 후 <b>업데이트는 자동</b>입니다.
         </p>
       </section>
+      <!-- iOS -->
+      <section class="card" id="card-ios">
+        <div class="card-head">
+          <span class="os-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.36 12.9c-.02-2.06 1.68-3.05 1.76-3.1-0.96-1.4-2.46-1.6-2.99-1.62-1.27-.13-2.48.75-3.13.75-.64 0-1.64-.73-2.7-.71-1.39.02-2.67.81-3.38 2.05-1.44 2.5-.37 6.2 1.03 8.23.68.99 1.5 2.1 2.56 2.06 1.03-.04 1.42-.66 2.66-.66 1.24 0 1.59.66 2.67.64 1.1-.02 1.8-1.01 2.48-2.01.78-1.15 1.1-2.26 1.12-2.32-.02-.01-2.15-.83-2.17-3.28zM14.3 6.9c.56-.68.94-1.63.84-2.57-.81.03-1.79.54-2.37 1.22-.52.6-.98 1.56-.86 2.48.9.07 1.83-.46 2.39-1.13z"/></svg>
+          </span>
+          <div>
+            <p class="card-title">iPhone · iPad</p>
+            <p class="card-sub">TestFlight로 설치</p>
+          </div>
+          <span class="card-ver">v1.15.5</span>
+          <span class="badge" id="ios-badge" style="display:none">현재 기기</span>
+        </div>
+        <a class="btn btn-navy" id="ios-btn" href="https://testflight.apple.com/join/utYhJw2T">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm1 5a1 1 0 0 0-2 0v5a1 1 0 0 0 .55.9l3 1.5a1 1 0 1 0 .9-1.8L13 11.4V7z"/></svg>
+          TestFlight로 설치
+        </a>
+        <ol class="steps">
+          <li>App Store에서 무료 <b>TestFlight</b> 앱 설치</li>
+          <li>위 버튼을 눌러 <b>K-REFCON</b> 설치</li>
+        </ol>
+        <p class="note">
+          iPhone은 Apple 정책상 App Store/TestFlight를 통해서만 설치할 수 있습니다.
+          위 버튼을 누르면 TestFlight 앱이 열리고 K-REFCON을 설치할 수 있습니다.
+        </p>
+      </section>
+      <!-- macOS -->
+      <section class="card" id="card-macos">
+        <div class="card-head">
+          <span class="os-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.36 12.9c-.02-2.06 1.68-3.05 1.76-3.1-.96-1.4-2.46-1.6-2.99-1.62-1.27-.13-2.48.75-3.13.75-.64 0-1.64-.73-2.7-.71-1.39.02-2.67.81-3.38 2.05-1.44 2.5-.37 6.2 1.03 8.23.68.99 1.5 2.1 2.56 2.06 1.03-.04 1.42-.66 2.66-.66 1.24 0 1.59.66 2.67.64 1.1-.02 1.8-1.01 2.48-2.01.78-1.15 1.1-2.26 1.12-2.32-.02-.01-2.15-.83-2.17-3.28zM14.3 6.9c.56-.68.94-1.63.84-2.57-.81.03-1.79.54-2.37 1.22-.52.6-.98 1.56-.86 2.48.9.07 1.83-.46 2.39-1.13z"/></svg>
+          </span>
+          <div>
+            <p class="card-title">Mac</p>
+            <p class="card-sub">Mac 상황판 · 상시 감시</p>
+          </div>
+          <span class="card-ver">v1.16.0</span>
+          <span class="badge" id="macos-badge" style="display:none">현재 기기</span>
+        </div>
+        <a class="btn btn-primary" id="macos-btn"
+           href="https://github.com/AegisAX/install/releases/download/krefcon-latest/K-REFCON-v1.16.0.dmg">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3a1 1 0 0 1 1 1v9.59l2.3-2.3a1 1 0 0 1 1.4 1.42l-4 4a1 1 0 0 1-1.4 0l-4-4a1 1 0 0 1 1.4-1.42l2.3 2.3V4a1 1 0 0 1 1-1zM5 19a1 1 0 0 1 1-1h12a1 1 0 0 1 0 2H6a1 1 0 0 1-1-1z"/></svg>
+          다운로드 · 설치 (v1.16.0)
+        </a>
+        <p class="note">
+          내려받은 <b>K-REFCON-v1.16.0.dmg</b>를 두 번 클릭한 뒤, 나오는 창에서
+          <b>K-REFCON 아이콘을 옆의 “응용 프로그램” 폴더로 끌어다 놓으면</b> 설치됩니다.
+          <a href="macos/">자세한 안내</a>
+        </p>
+        <p class="note">
+          창을 닫아도 <b>메뉴 막대에 남아 계속 감시</b>합니다. Mac을 켜면 자동으로 시작하도록
+          앱 안에서 설정할 수 있습니다.
+        </p>
+      </section>
+
+
     </div>
 
     <footer>
-      <p class="ver">버전 1.15.5</p>
       <p>
         <a href="https://policy.aegisax.com/krefcon/">개인정보처리방침</a>
         &nbsp;·&nbsp;
@@ -217,21 +264,25 @@
       // Android 도 UA 에 "Windows" 가 없지만, 일부 데스크톱 UA 에는 "Android" 가 없다.
       // 모바일을 먼저 판정한 뒤 남는 경우만 Windows 로 본다.
       var isWindows = !isIOS && !isAndroid && /Windows NT/.test(ua);
+      // iPadOS 는 위에서 isIOS 로 먼저 걸러지므로 여기 남는 Mac 만 잡힌다.
+      var isMac = !isIOS && !isAndroid && !isWindows && /Mac OS X|Macintosh/.test(ua);
       var androidCard = document.getElementById("card-android");
       var iosCard = document.getElementById("card-ios");
       var windowsCard = document.getElementById("card-windows");
+      var macosCard = document.getElementById("card-macos");
       var cards = document.querySelector(".cards");
-      if (isIOS) {
-        iosCard.classList.add("active");
-        document.getElementById("ios-badge").style.display = "";
-        cards.insertBefore(iosCard, androidCard); // matching OS first
-      } else if (isAndroid) {
-        androidCard.classList.add("active");
-        document.getElementById("android-badge").style.display = "";
-      } else if (isWindows) {
-        windowsCard.classList.add("active");
-        document.getElementById("windows-badge").style.display = "";
-        cards.insertBefore(windowsCard, androidCard);
+
+      // 기본 순서는 Android → Windows → iOS → Mac 이고, 접속한 기기에 맞는 카드만
+      // 맨 앞으로 올린다(나머지 상대 순서는 그대로).
+      var match = isIOS ? { card: iosCard, badge: "ios-badge" }
+                : isAndroid ? { card: androidCard, badge: "android-badge" }
+                : isWindows ? { card: windowsCard, badge: "windows-badge" }
+                : isMac ? { card: macosCard, badge: "macos-badge" }
+                : null;
+      if (match) {
+        match.card.classList.add("active");
+        document.getElementById(match.badge).style.display = "";
+        cards.insertBefore(match.card, cards.firstElementChild);
       }
     })();
   </script>
