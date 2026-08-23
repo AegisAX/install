@@ -1,8 +1,8 @@
 {
-  "versionCode": 69,
-  "versionName": "1.15.5",
-  "apkUrl": "https://github.com/AegisAX/install/releases/download/krefcon-latest/K-REFCON-v1.15.5.apk",
-  "notes": "• 자동 업데이트 확인 동작 점검용 버전\n• 최신 버전으로 업데이트",
+  "versionCode": 72,
+  "versionName": "1.17.0",
+  "apkUrl": "https://github.com/AegisAX/install/releases/download/krefcon-android/K-REFCON-Universal.apk",
+  "notes": "이번 새 기능(전체 현황 상황판)은 데스크톱 전용입니다 · 모바일은 표시·안정성 개선",
   "minVersionCode": 0,
-  "sha256": "7c8660ed508664c66a02c2394aab900f8d7d3937108ff1cf62af88daf12518ee"
+  "sha256": "a9dcd77ea648a2a25e2baab8546f474c44c06728aa6f652da125ac98f0560377"
 }
