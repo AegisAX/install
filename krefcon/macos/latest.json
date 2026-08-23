@@ -1,0 +1,7 @@
+{
+  "versionCode": 70,
+  "versionName": "1.16.0",
+  "apkUrl": "https://github.com/AegisAX/install/releases/download/krefcon-latest/K-REFCON-v1.16.0.dmg",
+  "notes": "데스크톱(Mac) 첫 배포 · 창을 닫아도 메뉴 막대에서 계속 감시합니다",
+  "minVersionCode": 0
+}
