@@ -1,7 +1,7 @@
 {
-  "versionCode": 70,
-  "versionName": "1.16.0",
+  "versionCode": 72,
+  "versionName": "1.17.0",
   "apkUrl": "https://github.com/AegisAX/install/releases/download/krefcon-latest/krefcon_monitor.appinstaller",
-  "notes": "데스크톱(Windows) 첫 배포 · 창을 닫아도 트레이에서 계속 감시합니다",
+  "notes": "앱을 열면 등록된 모든 채널 상태가 한 화면에 보입니다 · 창 크기 기억 · 표 모드 추가",
   "minVersionCode": 0
 }
