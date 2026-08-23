@@ -43,14 +43,22 @@
   }
   .wrap { width: 100%; max-width: 900px; padding: 32px 20px 48px; }
 
-  header { text-align: center; margin-bottom: 28px; }
-  .logo {
-    width: 96px; height: 96px; border-radius: 22px;
-    box-shadow: var(--shadow); display: block; margin: 0 auto 16px;
+  /* 한 줄 헤더: 아이콘 · 이름 · 설명 · 회사. 좁은 화면에서는 자연스럽게 줄바꿈된다. */
+  header {
+    display: flex; align-items: center; justify-content: center;
+    flex-wrap: wrap; gap: 8px 14px; margin-bottom: 28px;
   }
-  h1 { margin: 0; font-size: 1.7rem; letter-spacing: -0.02em; color: var(--text); }
-  .tagline { margin: 6px 0 2px; font-size: 1rem; color: var(--muted); }
+  .logo {
+    width: 56px; height: 56px; border-radius: 14px;
+    box-shadow: var(--shadow); display: block; margin: 0; flex: none;
+  }
+  .headline {
+    display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 10px;
+  }
+  h1 { margin: 0; font-size: 1.5rem; letter-spacing: -0.02em; color: var(--text); }
+  .tagline { margin: 0; font-size: 0.95rem; color: var(--muted); }
   .company { margin: 0; font-size: 0.85rem; color: var(--muted); }
+  .company::before { content: "·"; margin-right: 9px; opacity: 0.55; }
 
   /* 앱이 4개라 한 줄에 2장씩 두 줄. 좁은 화면(모바일)에서는 한 줄에 1장.
      grid-auto-rows:1fr 로 네 카드의 높이를 동일하게 맞춘다. */
@@ -129,10 +137,12 @@
 <body>
   <div class="wrap">
     <header>
-      <img class="logo" src="icon.png" alt="K-REFCON" width="96" height="96">
-      <h1>K-REFCON</h1>
-      <p class="tagline">냉동 컨테이너 실시간 모니터링</p>
-      <p class="company">㈜케이리퍼콘</p>
+      <img class="logo" src="icon.png" alt="K-REFCON" width="56" height="56">
+      <div class="headline">
+        <h1>K-REFCON</h1>
+        <p class="tagline">냉동 컨테이너 실시간 모니터링</p>
+        <p class="company">㈜케이리퍼콘</p>
+      </div>
     </header>
 
     <div class="cards">
