@@ -1,7 +1,7 @@
 {
-  "versionCode": 72,
-  "versionName": "1.17.0",
-  "apkUrl": "https://github.com/AegisAX/install/releases/download/krefcon-macos/K-REFCON-Universal.dmg",
-  "notes": "앱을 열면 등록된 모든 채널 상태가 한 화면에 보입니다 · 창 크기 기억 · 표 모드 추가",
+  "versionCode": 73,
+  "versionName": "1.18.0",
+  "apkUrl": "https://github.com/AegisAX/install/releases/download/v1.18.0/K-REFCON-Universal-v1.18.0.dmg",
+  "notes": "카드마다 최근 1시간 그래프 · 설정온도도 크게 · 넓은 창에서 4열 배치",
   "minVersionCode": 0
 }
