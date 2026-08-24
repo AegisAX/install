@@ -1,7 +1,7 @@
 {
-  "versionCode": 73,
-  "versionName": "1.18.0",
+  "versionCode": 74,
+  "versionName": "1.18.1",
   "apkUrl": "https://github.com/AegisAX/install/releases/download/krefcon-latest/krefcon_monitor.appinstaller",
-  "notes": "카드마다 최근 1시간 그래프 · 설정온도도 크게 · 넓은 창에서 4열 배치",
+  "notes": "설치 페이지 열기 버튼이 설치 페이지를 바로 엽니다 · 안내는 페이지 안 모달로",
   "minVersionCode": 0
 }
