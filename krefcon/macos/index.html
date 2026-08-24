@@ -43,14 +43,22 @@
   }
   .wrap { width: 100%; max-width: 560px; padding: 32px 20px 48px; }
 
-  header { text-align: center; margin-bottom: 28px; }
-  .logo {
-    width: 96px; height: 96px; border-radius: 22px;
-    box-shadow: var(--shadow); display: block; margin: 0 auto 16px;
+  /* 한 줄 헤더: 아이콘 · 제목 · 설명 · 회사. 좁은 화면에서는 자연스럽게 줄바꿈된다. */
+  header {
+    display: flex; align-items: center; justify-content: center;
+    flex-wrap: wrap; gap: 8px 14px; margin-bottom: 28px;
   }
-  h1 { margin: 0; font-size: 1.7rem; letter-spacing: -0.02em; color: var(--text); }
-  .tagline { margin: 6px 0 2px; font-size: 1rem; color: var(--muted); }
+  .logo {
+    width: 56px; height: 56px; border-radius: 14px;
+    box-shadow: var(--shadow); display: block; margin: 0; flex: none;
+  }
+  .headline {
+    display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 10px;
+  }
+  h1 { margin: 0; font-size: 1.5rem; letter-spacing: -0.02em; color: var(--text); }
+  .tagline { margin: 0; font-size: 0.95rem; color: var(--muted); }
   .company { margin: 0; font-size: 0.85rem; color: var(--muted); }
+  .company::before { content: "·"; margin-right: 9px; opacity: 0.55; }
 
   .cards { display: flex; flex-direction: column; gap: 16px; }
   .card {
@@ -120,10 +128,12 @@
 <body>
   <div class="wrap">
     <header>
-      <img class="logo" src="../icon.png" alt="K-REFCON" width="96" height="96">
-      <h1>K-REFCON for Mac</h1>
-      <p class="tagline">Mac에 띄워두는 상시 감시 상황판</p>
-      <p class="company">㈜케이리퍼콘</p>
+      <img class="logo" src="../icon.png" alt="K-REFCON" width="56" height="56">
+      <div class="headline">
+        <h1>K-REFCON for Mac</h1>
+        <p class="tagline">Mac에 띄워두는 상시 감시 상황판</p>
+        <p class="company">㈜케이리퍼콘</p>
+      </div>
     </header>
 
     <div class="cards">
@@ -132,17 +142,17 @@
           <span class="os-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.36 12.9c-.02-2.06 1.68-3.05 1.76-3.1-.96-1.4-2.46-1.6-2.99-1.62-1.27-.13-2.48.75-3.13.75-.64 0-1.64-.73-2.7-.71-1.39.02-2.67.81-3.38 2.05-1.44 2.5-.37 6.2 1.03 8.23.68.99 1.5 2.1 2.56 2.06 1.03-.04 1.42-.66 2.66-.66 1.24 0 1.59.66 2.67.64 1.1-.02 1.8-1.01 2.48-2.01.78-1.15 1.1-2.26 1.12-2.32-.02-.01-2.15-.83-2.17-3.28zM14.3 6.9c.56-.68.94-1.63.84-2.57-.81.03-1.79.54-2.37 1.22-.52.6-.98 1.56-.86 2.48.9.07 1.83-.46 2.39-1.13z"/></svg></span>
           <div>
             <p class="card-title">macOS 10.15 이상</p>
-            <p class="card-sub">버전 1.16.0</p>
+            <p class="card-sub">버전 1.17.0</p>
           </div>
         </div>
 
-        <a class="btn btn-primary" href="https://github.com/AegisAX/install/releases/download/krefcon-latest/K-REFCON-v1.16.0.dmg">
+        <a class="btn btn-primary" href="https://github.com/AegisAX/install/releases/download/krefcon-macos/K-REFCON-Universal.dmg">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3a1 1 0 0 1 1 1v9.59l2.3-2.3a1 1 0 0 1 1.4 1.42l-4 4a1 1 0 0 1-1.4 0l-4-4a1 1 0 0 1 1.4-1.42l2.3 2.3V4a1 1 0 0 1 1-1zM5 19a1 1 0 0 1 1-1h12a1 1 0 0 1 0 2H6a1 1 0 0 1-1-1z"/></svg>
           내려받아 설치하기
         </a>
 
         <p class="note" style="margin-top:14px">
-          내려받은 <b>K-REFCON-v1.16.0.dmg</b> 를 <b>두 번 클릭</b>하면 창이 하나 열립니다.
+          내려받은 <b>K-REFCON-Universal.dmg</b> 를 <b>두 번 클릭</b>하면 창이 하나 열립니다.
         </p>
 
         <ol class="steps">
@@ -187,7 +197,7 @@
     </div>
 
     <footer>
-      <p class="ver">버전 1.16.0</p>
+      <p class="ver">버전 1.17.0</p>
       <p>
         <a href="../">다른 기기에 설치</a>
         &nbsp;·&nbsp;
