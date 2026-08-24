@@ -131,6 +131,36 @@
     line-height: 1.7;
   }
   footer a { color: var(--blue); text-decoration: none; }
+
+  /* 자세한 안내 모달: 상세 페이지의 본문(헤더·꼬리말 제외)만 그대로 가져와 띄운다.
+     내용이 한 곳(상세 페이지)에만 있으므로 배포 때 두 번 고칠 일이 없다. */
+  .modal[hidden] { display: none; }
+  .modal {
+    position: fixed; inset: 0; z-index: 50;
+    display: flex; align-items: center; justify-content: center; padding: 18px;
+  }
+  .modal-backdrop { position: absolute; inset: 0; background: rgba(6, 12, 24, 0.62); }
+  .modal-panel {
+    position: relative; width: min(760px, 100%); max-height: 86vh;
+    display: flex; flex-direction: column;
+    background: var(--bg); border: 1px solid var(--border);
+    border-radius: 16px; box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+  }
+  .modal-head {
+    display: flex; align-items: center; gap: 12px;
+    padding: 14px 16px 10px; border-bottom: 1px solid var(--border);
+  }
+  .modal-head h2 { margin: 0; font-size: 1.05rem; font-weight: 600; color: var(--text); }
+  .modal-x {
+    margin-left: auto; border: 0; background: transparent; cursor: pointer;
+    color: var(--muted); font-size: 1.1rem; line-height: 1;
+    padding: 6px 8px; border-radius: 8px;
+  }
+  .modal-x:hover { background: var(--border); color: var(--text); }
+  .modal-body { overflow: auto; padding: 14px 16px 18px; }
+  /* 상세 페이지는 2단 그리드지만 모달 안에서는 한 단으로 읽는다. */
+  .modal-body .cards { grid-template-columns: 1fr; gap: 12px; }
+  .modal-body .card { box-shadow: none; }
   .ver { font-variant-numeric: tabular-nums; }
 </style>
 </head>
@@ -195,7 +225,7 @@
           내려받은 <b>K-REFCON-x64.exe</b>를 두 번 클릭하면 설치됩니다. 이어서 나오는 창은
           이렇게 눌러 주세요 — <b>“Windows의 PC 보호”</b>는 <b>추가 정보 → 실행</b>,
           <b>“디바이스를 변경…”</b>은 <b>예</b>, 마지막 <b>“설치하시겠습니까?”</b>는 <b>설치</b>.
-          <a href="windows/">자세한 안내</a>
+          <a href="windows/" data-detail>자세한 안내</a>
         </p>
         <p class="note">
           창을 닫아도 <b>알림 영역에 남아 계속 감시</b>하고, PC를 켜면 자동으로 시작합니다.
@@ -249,7 +279,7 @@
         <p class="note">
           내려받은 <b>K-REFCON-Universal.dmg</b>를 두 번 클릭한 뒤, 나오는 창에서
           <b>K-REFCON 아이콘을 옆의 “응용 프로그램” 폴더로 끌어다 놓으면</b> 설치됩니다.
-          <a href="macos/">자세한 안내</a>
+          <a href="macos/" data-detail>자세한 안내</a>
         </p>
         <p class="note">
           창을 닫아도 <b>메뉴 막대에 남아 계속 감시</b>합니다. Mac을 켜면 자동으로 시작하도록
@@ -269,6 +299,79 @@
       <p>© 2026 ㈜케이리퍼콘 (K-REFCON)</p>
     </footer>
   </div>
+
+  <div class="modal" id="detail-modal" hidden>
+    <div class="modal-backdrop" data-close></div>
+    <div class="modal-panel" role="dialog" aria-modal="true"
+         aria-labelledby="detail-modal-title">
+      <div class="modal-head">
+        <h2 id="detail-modal-title"></h2>
+        <button type="button" class="modal-x" data-close aria-label="닫기">✕</button>
+      </div>
+      <div class="modal-body" id="detail-modal-body"></div>
+    </div>
+  </div>
+
+  <script>
+  // "자세한 안내" → 상세 페이지 본문만 모달로. 내용은 상세 페이지에서 그대로
+  // 가져오므로 안내 문구가 두 곳으로 갈라지지 않는다. 링크의 href 는 그대로 두어
+  // JS 가 막히거나 새 탭으로 열면 원래 페이지가 뜬다.
+  (function () {
+    var modal = document.getElementById('detail-modal');
+    var titleEl = document.getElementById('detail-modal-title');
+    var bodyEl = document.getElementById('detail-modal-body');
+    var cache = {};
+    var lastFocus = null;
+
+    function close() {
+      modal.hidden = true;
+      document.body.style.overflow = '';
+      if (lastFocus) { lastFocus.focus(); lastFocus = null; }
+    }
+
+    function open(entry, trigger) {
+      lastFocus = trigger;
+      titleEl.textContent = entry.title;
+      bodyEl.innerHTML = '<div class="cards">' + entry.html + '</div>';
+      bodyEl.scrollTop = 0;
+      modal.hidden = false;
+      document.body.style.overflow = 'hidden';
+      modal.querySelector('.modal-x').focus();
+    }
+
+    document.addEventListener('click', function (e) {
+      if (e.target.closest('[data-close]')) { close(); return; }
+      var link = e.target.closest('a[data-detail]');
+      if (!link) return;
+      // 새 탭·새 창으로 여는 조작은 그대로 둔다.
+      if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+      e.preventDefault();
+      var url = link.getAttribute('href');
+      if (cache[url]) { open(cache[url], link); return; }
+      fetch(url, { credentials: 'same-origin' })
+        .then(function (res) {
+          if (!res.ok) throw new Error(res.status);
+          return res.text();
+        })
+        .then(function (html) {
+          var doc = new DOMParser().parseFromString(html, 'text/html');
+          var cards = doc.querySelector('.wrap > .cards');
+          if (!cards) throw new Error('no content');
+          var h1 = doc.querySelector('h1');
+          cache[url] = {
+            html: cards.innerHTML,
+            title: h1 ? h1.textContent.trim() : '자세한 안내'
+          };
+          open(cache[url], link);
+        })
+        .catch(function () { window.location.href = url; });
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && !modal.hidden) close();
+    });
+  })();
+  </script>
 
   <script>
     (function () {
