@@ -1,8 +1,8 @@
 {
-  "versionCode": 72,
-  "versionName": "1.17.0",
-  "apkUrl": "https://github.com/AegisAX/install/releases/download/krefcon-android/K-REFCON-Universal.apk",
-  "notes": "이번 새 기능(전체 현황 상황판)은 데스크톱 전용입니다 · 모바일은 표시·안정성 개선",
+  "versionCode": 73,
+  "versionName": "1.18.0",
+  "apkUrl": "https://github.com/AegisAX/install/releases/download/v1.18.0/K-REFCON-Universal-v1.18.0.apk",
+  "notes": "이번 새 기능(상황판 카드 그래프)은 데스크톱 전용입니다 · 모바일은 표시·안정성 개선",
   "minVersionCode": 0,
-  "sha256": "a9dcd77ea648a2a25e2baab8546f474c44c06728aa6f652da125ac98f0560377"
+  "sha256": "bba8777ea5f8bcde70d30117ff3d00843e199dcac512c1e09141a96f0c52a62c"
 }
