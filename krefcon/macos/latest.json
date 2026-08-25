@@ -1,7 +1,7 @@
 {
-  "versionCode": 77,
-  "versionName": "1.18.4",
-  "apkUrl": "https://github.com/AegisAX/install/releases/download/v1.18.4/K-REFCON-Universal-v1.18.4.dmg",
-  "notes": "1.18.4 (로컬 빌드 배포)",
+  "versionCode": 78,
+  "versionName": "1.18.5",
+  "apkUrl": "https://github.com/AegisAX/install/releases/download/v1.18.5/K-REFCON-Universal-v1.18.5.dmg",
+  "notes": "1.18.5 (로컬 빌드 배포)",
   "minVersionCode": 0
 }
