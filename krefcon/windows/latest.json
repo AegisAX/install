@@ -1,7 +1,7 @@
 {
-  "versionCode": 75,
-  "versionName": "1.18.2",
+  "versionCode": 76,
+  "versionName": "1.18.3",
   "apkUrl": "https://github.com/AegisAX/install/releases/download/krefcon-latest/krefcon_monitor.appinstaller",
-  "notes": "1.18.2 (로컬 빌드 배포)",
+  "notes": "1.18.3 (로컬 빌드 배포)",
   "minVersionCode": 0
 }
