@@ -1,8 +1,8 @@
 {
-  "versionCode": 76,
-  "versionName": "1.18.3",
-  "apkUrl": "https://github.com/AegisAX/install/releases/download/v1.18.3/K-REFCON-Universal-v1.18.3.apk",
-  "notes": "1.18.3 (로컬 빌드 배포)",
+  "versionCode": 77,
+  "versionName": "1.18.4",
+  "apkUrl": "https://github.com/AegisAX/install/releases/download/v1.18.4/K-REFCON-Universal-v1.18.4.apk",
+  "notes": "1.18.4 (로컬 빌드 배포)",
   "minVersionCode": 0,
-  "sha256": "39f6ba88f16104b52b703510eb57da9fe9d61879d03249dd43ac5471945ac464"
+  "sha256": "fafbbcbbec8ac10fb484f36645b12d32566c3714d9e9a742f31f46f18a415959"
 }
