@@ -1,7 +1,7 @@
 {
-  "versionCode": 74,
-  "versionName": "1.18.1",
-  "apkUrl": "https://github.com/AegisAX/install/releases/download/v1.18.1/K-REFCON-Universal-v1.18.1.dmg",
-  "notes": "설치 페이지 열기 버튼이 설치 페이지를 바로 엽니다 · 안내는 페이지 안 모달로",
+  "versionCode": 76,
+  "versionName": "1.18.3",
+  "apkUrl": "https://github.com/AegisAX/install/releases/download/v1.18.3/K-REFCON-Universal-v1.18.3.dmg",
+  "notes": "1.18.3 (로컬 빌드 배포)",
   "minVersionCode": 0
 }
